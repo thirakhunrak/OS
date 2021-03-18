@@ -15,6 +15,7 @@ int main(int argc, char **argv) {
         
         //
         // OS -- OPEN NAMED SEMAPHORE HERE
+		sem_t *sem = sem_open("pabx",O_CREAT ,0600,0);
         //      
                 
 	while(1) {
@@ -28,6 +29,7 @@ int main(int argc, char **argv) {
                 
                 //
                 // OS -- LOCK SEMAPHORE HERE
+				sem_wait(sem);
                 //
                 
 		time_t t = time(NULL) - t0;
@@ -39,6 +41,7 @@ int main(int argc, char **argv) {
 
                 //
                 // OS -- UNLOCK SEMAPHORE HERE
+				sem_post(sem);
                 //
 
 		printf("Hang up the phone.\n");

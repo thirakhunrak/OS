@@ -10,6 +10,7 @@ int main(int argc, char **argv) {
 
 	//
 	// OS -- CRAETE NAMED SEMAPHORE HERE
+	sem_t *sem = sem_open("pabx",O_CREAT,0600 ,num_lines);
 	//
 
 	int semval;
@@ -17,6 +18,7 @@ int main(int argc, char **argv) {
 
 		//
 		// OS -- PLACE CURRENT VALUE OF SEMAPHORE IN 'semval' HERE
+		int status = sem_getvalue(sem, &semval);
 		//
 
 		printf("There are %d phone lines available.\n", semval);
